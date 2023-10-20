@@ -8,5 +8,6 @@ declare namespace NodeJS {
     NEXT_PUBLIC_STRIPE_PUBLIC_KEY: string;
     NEXTAUTH_SECRET: string;
     HOST_URL: string;
+    src: string | undefined;
   }
 }
