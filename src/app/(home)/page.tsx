@@ -1,9 +1,9 @@
-import Image from "next/image";
 import Categories from "./components/categories";
 import { prismaClient } from "@/lib/prisma";
 import ProductList from "./components/product-list";
 import { TitleSection } from "./components/titleSection";
 import PromoBanner from "./components/promo-banner";
+import { Footer } from "@/components/ui/footer";
 
 export default async function Home() {
   const deals = await prismaClient.product.findMany({
@@ -20,8 +20,16 @@ export default async function Home() {
       },
     },
   });
+  const mouses = await prismaClient.product.findMany({
+    where: {
+      category: {
+        slug: "mouses",
+      },
+    },
+  });
+
   return (
-    <div>
+    <div className="y-8 flex flex-col gap-8">
       <PromoBanner src="/banner-home.png" alt="Home Banner" />
       <div className="mt-8 px-5">
         <Categories />
@@ -36,7 +44,13 @@ export default async function Home() {
         <TitleSection>keybords</TitleSection>
         <ProductList products={keyboards} />
       </div>
+
       <PromoBanner src="/banner-fones.png" alt="" />
+      <div className="mt-8">
+        <TitleSection>Mouses</TitleSection>
+        <ProductList products={mouses} />
+      </div>
+      <Footer />
     </div>
   );
 }
