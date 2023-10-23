@@ -50,7 +50,6 @@ export default async function Home() {
         <TitleSection>Mouses</TitleSection>
         <ProductList products={mouses} />
       </div>
-      <Footer />
     </div>
   );
 }
