@@ -1,4 +1,5 @@
-import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { prismaClient } from "@/lib/prisma";
 import { Category } from "@prisma/client";
 import {
   HeadphonesIcon,
@@ -8,12 +9,13 @@ import {
   SpeakerIcon,
   SquareIcon,
 } from "lucide-react";
+import Link from "next/link";
 
 interface CategoryItemProps {
   category: Category;
 }
 
-export const CategorieItem = ({ category }: CategoryItemProps) => {
+export const CategorieItem = async ({ category }: CategoryItemProps) => {
   const categoryIcon = {
     keyboards: <KeyboardIcon size={16} />,
     monitors: <MonitorIcon size={16} />,
@@ -23,12 +25,17 @@ export const CategorieItem = ({ category }: CategoryItemProps) => {
     mouses: <MouseIcon size={16} />,
   };
   return (
-    <Badge
-      variant="outline"
-      className="flex items-center justify-center gap-2 rounded-lg py-3"
+    <Link
+      href={`/category/${category.slug}`}
+      className="flex items-center justify-center gap-3"
     >
-      {categoryIcon[category.slug as keyof typeof categoryIcon]}
-      <span className="text-xs font-bold">{category.name}</span>
-    </Badge>
+      <Button
+        variant="outline"
+        className="flex w-full items-center justify-center gap-2 rounded-lg py-3"
+      >
+        {categoryIcon[category.slug as keyof typeof categoryIcon]}
+        <span className="text-xs font-bold">{category.name}</span>
+      </Button>
+    </Link>
   );
 };

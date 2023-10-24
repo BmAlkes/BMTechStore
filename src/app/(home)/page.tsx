@@ -30,7 +30,7 @@ export default async function Home() {
   return (
     <div className="y-8 flex flex-col gap-8">
       <PromoBanner src="/banner-home.png" alt="Home Banner" />
-      <div className="mt-8 px-5">
+      <div className="mt-8  px-5">
         <Categories />
       </div>
       <div className="mt-8">
