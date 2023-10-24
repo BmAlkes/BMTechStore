@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { useState } from "react";
+import { ProductIndo } from "./product-info";
 
 interface ProductImagesComponent {
   name: string;
