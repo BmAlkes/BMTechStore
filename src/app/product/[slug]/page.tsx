@@ -3,6 +3,7 @@ import ProductImages from "./components/productImages";
 import { ProductIndo } from "./components/product-info";
 import { computeProductTotalPrice } from "@/helpers/product";
 import ProductList from "@/components/ui/product-list";
+import { TitleSection } from "@/components/ui/titleSection";
 
 interface ProductDetailPageProps {
   params: {
@@ -42,7 +43,10 @@ const ProductPage = async ({ params: { slug } }: ProductDetailPageProps) => {
         key={product.id}
         product={computeProductTotalPrice(product)}
       />
-      <ProductList products={product.category.products} />
+      <div>
+        <TitleSection>Reccommend Products</TitleSection>
+        <ProductList products={product.category.products} />
+      </div>
     </div>
   );
 };
