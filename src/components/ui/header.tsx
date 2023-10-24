@@ -133,7 +133,7 @@ export const Header = () => {
             <ShoppingCartIcon />
           </Button>
         </SheetTrigger>
-        <SheetContent>
+        <SheetContent className="overflow-y-auto">
           <Cart />
         </SheetContent>
       </Sheet>
