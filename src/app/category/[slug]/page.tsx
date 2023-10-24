@@ -1,4 +1,4 @@
-import ProductList from "@/app/(home)/components/product-list";
+import ProductList from "@/components/ui/product-list";
 import { Badge } from "@/components/ui/badge";
 import { ProductItem } from "@/components/ui/product-item";
 import { computeProductTotalPrice } from "@/helpers/product";
