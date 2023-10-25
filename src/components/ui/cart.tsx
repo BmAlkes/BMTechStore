@@ -8,9 +8,20 @@ import { Http2ServerRequest } from "http2";
 import { Separator } from "./separator";
 import { ScrollArea } from "./scroll-area";
 import { Button } from "./button";
+import { createCheckout } from "@/actions/checkout";
+import { loadStripe } from "@stripe/stripe-js";
 
 const Cart = () => {
   const { products, subtotal, total, totalDiscount } = useContext(CartContext);
+  const handleFinishPurchaseClick = async () => {
+    const checkout = await createCheckout(products);
+    const stripe = await loadStripe(
+      `${process.env.NEXT_PUBLIC_STRIPE_PUBLIC_KEY}`,
+    );
+    stripe?.redirectToCheckout({
+      sessionId: checkout.id,
+    });
+  };
   return (
     <div className="flex h-full flex-col gap-8">
       <Badge
@@ -57,7 +68,10 @@ const Cart = () => {
           <p className="">${total.toFixed(2)}</p>
         </div>
       </div>
-      <Button className="uppercase"> finalize purchase </Button>
+      <Button className="uppercase" onClick={handleFinishPurchaseClick}>
+        {" "}
+        finalize purchase{" "}
+      </Button>
     </div>
   );
 };

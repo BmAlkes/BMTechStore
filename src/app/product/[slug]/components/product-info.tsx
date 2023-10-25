@@ -14,7 +14,6 @@ export const ProductIndo = ({ product }: ProductProps) => {
   const [quantity, setQuantity] = useState(1);
 
   const { addProductsToCart } = useContext(CartContext);
-  console.log(addProductsToCart);
 
   const handledecreaseAmount = () => {
     setQuantity((prev) => (prev === 1 ? prev : prev - 1));
